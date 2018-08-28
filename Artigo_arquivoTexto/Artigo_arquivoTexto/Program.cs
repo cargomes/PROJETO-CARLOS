@@ -17,7 +17,8 @@ namespace Artigo_arquivoTexto
             //AbrirArquivo();
             //LendoArquivo();
             //AbrirTodoArquivo();
-            AbrirArquivoEditor();
+            //AbrirArquivoEditor();
+            //DeletaArquivo();
         }
 
         private static void CriaArquivo()
@@ -179,6 +180,19 @@ namespace Artigo_arquivoTexto
             System.Diagnostics.Process.Start("notepad", CaminhoArquivo);
             //feito isso, será aperto o bloco de notas com o conteúdo do 
             //arquivo txt
+        }
+
+        private static void DeletaArquivo()
+        {
+            //Colocando o endereço físico (caminho do arquivo texto) 
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
+
+            //usando o método para deletar o arquivo texto
+            //passando como parâmetro o caminho físico do arquivo
+            //que deseja apagar
+            File.Delete(CaminhoArquivo);
+
+            //o arquivo texto foi deletado
         }
     }
 }
