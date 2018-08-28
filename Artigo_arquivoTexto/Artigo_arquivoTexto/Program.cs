@@ -12,7 +12,12 @@ namespace Artigo_arquivoTexto
     {
         private static void Main(string[] args)
         {
-            CriaArquivoeEscreve();
+            //CriaArquivo();
+            //CriarEscreverArquivo();
+            //AbrirArquivo();
+            //LendoArquivo();
+            //AbrirTodoArquivo();
+            AbrirArquivoEditor();
         }
 
         private static void CriaArquivo()
@@ -32,28 +37,28 @@ namespace Artigo_arquivoTexto
             Console.ReadKey();
         }
 
-        private static void CriaArquivoeEscreve() {
+        //Criando e escrevendo no arquivo
+
+        private static void CriarEscreverArquivo()
+        {
+
             ////declarando a variavel do tipo StreamWriter para 
             //abrir ou criar um arquivo para escrita 
             StreamWriter x;
 
             ////Colocando o caminho fisico e o nome do arquivo a ser criado
             //finalizando com .txt
-            string CaminhoNome = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\arq01.txt";
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
 
             //utilizando o metodo para criar um arquivo texto
             //e associando o caminho e nome ao metodo
-            x = File.CreateText(CaminhoNome);
+            x = File.CreateText(CaminhoArquivo);
 
             //aqui, exemplo de escrever no arquivo texto
             //como se fossemos criar um recibo de pagamento
-
-            //escrevendo o titulo
-            x.WriteLine("Recibo de Pagamanto");
-            //pulando linha sem escrita
+            x.WriteLine("Recibo de Pagamento");
             x.WriteLine();
             x.WriteLine();
-            //escrevendo conteúdo do recibo
             x.WriteLine("Recebi do Sr: Nome do Pagador");
             x.WriteLine("a quantia de VALOR DO RECIBO (VALOR POR EXTENSO),");
             x.WriteLine("referente ao DESCRIÇÃO DO QUE FOI PAGO... ");
@@ -65,10 +70,115 @@ namespace Artigo_arquivoTexto
             x.WriteLine("CPF do pagador: CPF");
             x.WriteLine();
 
-            //fechando o arquivo texto com o método .Close()
             x.Close();
         }
 
+        //Abrir Arquivo
+        private static void AbrirArquivo()
+        {
+            //declarando a variavel do tipo StreamWriter para 
+            //abrir ou criar um arquivo para escrita 
+            StreamWriter x;
 
+            //Colocando o caminho fisico e o nome do arquivo a ser criado
+            //finalizando com .txt
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
+
+
+            //utilizando o método para criar um arquivo texto
+            //e associando o caminho e nome ao metodo
+            x = File.AppendText(CaminhoArquivo);
+
+            x.WriteLine();
+            x.WriteLine("____________________________________");
+            x.WriteLine("Nome do Recebedor");
+            x.WriteLine("CPF do Recebedor:");
+
+            x.Close();
+
+        }
+
+        private static void LendoArquivo()
+        {
+            // declara variável StreamReader
+            //que é a variável usada para abrir um arquivo texto para leitura
+            StreamReader x;
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
+
+            //abrindo um arquivo texto indicado
+            x = File.OpenText(CaminhoArquivo);
+
+            //lendo conteúdo da linha do arquivo texto
+            string linha = x.ReadLine();
+
+            //escrevendo este conteúdo na tela
+            //mais podemos salvar esse conteúdo em uma variável
+            //do tipo string, para utilização no nosso código
+            Console.WriteLine(linha);
+
+            //fechar arquivo texto
+            x.Close();
+
+            Console.ReadKey();
+        }
+
+
+
+
+        // Como não sabemos quantas linhas tem um arquivo texto
+        // precisamos de algo que nos avise quando acabar, e isso 
+        // é o que o método EndOfStream da variável do tipo StreamReader faz.
+        // Este método retorna um valor booleano, no qual retorna “true” 
+        // caso esteja na última linha deste arquivo.Então criaremos um loop, 
+        // no qual enquanto o método EndOfStream retornar valor booleano “false”, 
+        // ele lê o conteúdo da linha, e se ele retornar valor booleano “true”, 
+        // quer dizer que chegou ao fim do arquivo, então para de ler e saiu do loop
+        // criado.Para isso ser feito, utilizaremos a função while passando 
+        // como parâmetro o método EndOfStream da variável StremReader com o simbolo “!=”, 
+        // que significa “diferente”, e o valor booleano “true”.
+
+        private static void AbrirTodoArquivo()
+        {
+            //declarando variavél do tipo StreamReader
+            StreamReader x;
+
+            //colocando o caminho físico
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
+
+            //abrindo um arquivo
+            x = File.OpenText(CaminhoArquivo);
+
+            //enquanto nao retornar valor booleano true 
+            //quer dizer que não chegou no fim do arquivo
+            while (x.EndOfStream != true)
+            { 
+                //Lê conteúdo da linha
+                string linha = x.ReadLine();
+
+                //escreve na tela o conteudo da linha
+                Console.WriteLine(linha);
+            }
+            //após sair do while(enquando), é porque leu todo conteudo
+            //então temos q fechar o arquivo q tá aberto
+            x.Close();
+
+            Console.ReadKey();
+            //esse comando é para não fechar a tela do console
+            // fechar só após usuário clicar em uma tecla
+        }
+
+        //ABRINDO NUM EDITOR DE TEXTO
+        private static void AbrirArquivoEditor()
+        {
+            //Colocando o endereço físico (caminho do arquivo texto) 
+            string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
+
+            //Abrindo o arquivo texto em um leitor de texto, no caso, 
+            //o bloco de notas(notepad)
+
+            System.Diagnostics.Process.Start("notepad", CaminhoArquivo);
+            //feito isso, será aperto o bloco de notas com o conteúdo do 
+            //arquivo txt
+        }
     }
 }
