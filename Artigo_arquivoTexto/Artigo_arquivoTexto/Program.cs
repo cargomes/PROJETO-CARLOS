@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 using System.IO; //declarando a biblioteca de entrada e saída de arquivos
                  //a biblioteca IO
 
+
 namespace Artigo_arquivoTexto
 {
     class Program
+
     {
         private static void Main(string[] args)
         {
@@ -16,9 +18,12 @@ namespace Artigo_arquivoTexto
             //CriarEscreverArquivo();
             //AbrirArquivo();
             //LendoArquivo();
-            //AbrirTodoArquivo();
+            AbrirTodoArquivo();
             //AbrirArquivoEditor();
             //DeletaArquivo();
+            //Console.BackgroundColor = ConsoleColor.Blue;
+            //Console.ForegroundColor = ConsoleColor.Red;
+            
         }
 
         private static void CriaArquivo()
@@ -140,6 +145,9 @@ namespace Artigo_arquivoTexto
 
         private static void AbrirTodoArquivo()
         {
+
+            Console.ForegroundColor = ConsoleColor.Yellow;
+
             //declarando variavél do tipo StreamReader
             StreamReader x;
 
@@ -158,6 +166,7 @@ namespace Artigo_arquivoTexto
 
                 //escreve na tela o conteudo da linha
                 Console.WriteLine(linha);
+          
             }
             //após sair do while(enquando), é porque leu todo conteudo
             //então temos q fechar o arquivo q tá aberto
@@ -171,6 +180,7 @@ namespace Artigo_arquivoTexto
         //ABRINDO NUM EDITOR DE TEXTO
         private static void AbrirArquivoEditor()
         {
+
             //Colocando o endereço físico (caminho do arquivo texto) 
             string CaminhoArquivo = "C:\\PROJETO-CARLOS\\Artigo_arquivoTexto\\recibo2.txt";
 
@@ -180,6 +190,8 @@ namespace Artigo_arquivoTexto
             System.Diagnostics.Process.Start("notepad", CaminhoArquivo);
             //feito isso, será aperto o bloco de notas com o conteúdo do 
             //arquivo txt
+
+            
         }
 
         private static void DeletaArquivo()
@@ -194,5 +206,6 @@ namespace Artigo_arquivoTexto
 
             //o arquivo texto foi deletado
         }
+
     }
 }
